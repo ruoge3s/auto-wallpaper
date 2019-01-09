@@ -23,7 +23,7 @@ class Config:
 
     def get(self, name, default=None):
         """
-        获取配置
+        获取单个配置
         :param name:str
         :param default: 未配置时的默认值
         :return:
@@ -34,6 +34,13 @@ class Config:
             return self._cf.get(res[0], res[1], fallback=default)
         else:
             return default
+
+    def section(self, name):
+        buffer = {}
+        options = self._cf.options(name)
+        for o in options:
+            buffer[o] = self._cf.get(name, o)
+        return buffer
 
     def set(self):
         pass
