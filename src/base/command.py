@@ -84,18 +84,18 @@ class Helper(Command):
                 c = handlers
 
             attr_describes = c.long_opts_describe if hasattr(c, 'long_opts_describe') else {}
-
             for on in c.long_opts:
                 method_max_length = max(len(on) + 2, method_max_length)
                 buffer['methods'].append({
                     'name': '--' + under2dash(on),
                     'describe': attr_describes.get(on, '')
                 })
+            flag_describes = c.short_opts_describe if hasattr(c, 'short_opts_describe') else {}
             for on in c.short_opts:
                 method_max_length = max(len(on) + 1, method_max_length)
                 buffer['methods'].append({
                     'name': '-' + under2dash(on),
-                    'describe': attr_describes.get(on, '')
+                    'describe': flag_describes.get(on, '')
                 })
 
             info['classes'].append(buffer)
