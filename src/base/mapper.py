@@ -23,7 +23,7 @@ def describe(content):
     :return:
     """
     def wrapper(obj):
-        add('describe', F"{obj.__module__}.{obj.__qualname__}", content)
+        add('describe', obj.__module__ + '.' + obj.__qualname__, content)
 
         @wraps(obj)
         def origin(*args, **kwargs):
@@ -42,4 +42,4 @@ def get_describe(obj, default=''):
     :param default:
     :return:
     """
-    return get('describe', F"{obj.__module__}.{obj.__qualname__}", default)
+    return get('describe', obj.__module__ + '.' + obj.__qualname__, default)

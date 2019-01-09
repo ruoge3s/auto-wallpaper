@@ -19,3 +19,14 @@ def singleton(cls):
 
     return get_instance
 
+
+def tab(num=1):
+    return " " * num
+
+
+def under2dash(string):
+    return string.replace('_', '-')
+
+
+def dash2under(string):
+    return string.replace('-', '_')

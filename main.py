@@ -1,9 +1,7 @@
 # coding=utf-8
 
-import os
-from src.base.application import Application
-from src.bootstrap import run
+import src.bootstrap
+from src.base.console import Console
 
-
-Application.BASEDIR = os.path.dirname(os.path.abspath(__file__))
-run()
+src.bootstrap.enable()
+Console().execute()
