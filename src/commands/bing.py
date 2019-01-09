@@ -10,13 +10,13 @@ from src.base.application import Application
 
 
 @mapper.describe('壁纸下载器')
-class Download(Command):
+class Bing(Command):
 
     home = None
     base_uri = None
     rank_uri = None
 
-    def init(self):
+    def _init(self):
         self.home = Config().get('wallpaper:home')
 
         if self.home[0] is not '/':
@@ -29,9 +29,9 @@ class Download(Command):
         self.base_uri = Config().get('bing:base-uri')
 
     @mapper.describe('从bing下载壁纸')
-    def bing(self):
+    def download(self):
         # 创建下载目录
-        self.init()
+        self._init()
 
         # 获取总页数
         response = requests.get(self.rank_uri)
