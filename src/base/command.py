@@ -1,6 +1,7 @@
 # coding=utf-8
 from getopt import getopt
 import sys
+from src.base.maps import get_describe
 
 
 class Command:
@@ -44,10 +45,17 @@ class Helper(Command):
         sys.stdout.write("eg:python <class>:<method> [options]\n")
         sys.stdout.write("Options:\n")
         for name in handlers:
-            sys.stdout.write(" " * 2 + F"{name}\n")
-            ms = list(filter(
-                lambda mtd: not mtd.startswith("_") and not mtd.endswith("_") and callable(getattr(handlers[name], mtd)),
+            content = get_describe(handlers[name])
+            sys.stdout.write(" " * 2 + F"{name}    {content}\n")
+            mns = list(filter(
+                lambda subsidiary:
+                    not subsidiary.startswith("_")
+                    and not subsidiary.endswith("_")
+                    and callable(getattr(handlers[name], subsidiary)),
                 dir(handlers[name])
             ))
-            for m in ms:
-                sys.stdout.write(" " * 6 + F"{m}\n")
+            for mn in mns:
+                func = getattr(handlers[name], mn)
+                content = get_describe(func)
+                sys.stdout.write(" " * 6 + F"{mn}   {content}\n")
+

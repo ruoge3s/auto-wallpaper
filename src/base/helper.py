@@ -1,6 +1,5 @@
 # coding=utf-8
 
-import os
 from functools import wraps
 
 
@@ -19,3 +18,4 @@ def singleton(cls):
         return instances[cls]
 
     return get_instance
+
