@@ -81,7 +81,7 @@ class Helper(Command):
             if isfunction(handlers[name]):
                 c = handlers[name]()
             else:
-                c = handlers
+                c = handlers[name]
 
             attr_describes = c.long_opts_describe if hasattr(c, 'long_opts_describe') else {}
             for on in c.long_opts:
