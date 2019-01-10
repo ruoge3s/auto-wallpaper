@@ -26,7 +26,7 @@ python main.py wallpaper:deepin
 ```
 > 每隔三分钟自动切换壁纸
 
-## TODO
+## Todo
 
 - [ ] 壁纸源增加[unsplash](https://unsplash.com/)和[pexels](https://www.pexels.com/)
 - [ ] 增加壁纸拼接功能，拼接多个不同尺寸的壁纸拼接为一张进行显示
