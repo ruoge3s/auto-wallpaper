@@ -46,7 +46,7 @@ class Helper(Command):
     @mapper.describe('命令提示')
     def _tips(self):
         info = {
-            'eg':      "eg:python <class>:<method> [options]",
+            'eg':      "eg:python main.py <class>:<method> [options]",
             'title':   "Options:",
             'classes': []
         }
