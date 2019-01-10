@@ -29,6 +29,7 @@ python main.py wallpaper:deepin
 ## TODO
 
 - [ ] 壁纸源增加[unsplash](https://unsplash.com/)和[pexels](https://www.pexels.com/)
+- [ ] 其他linux发行版壁纸切换
 - [ ] MacOS壁纸切换
 - [ ] Windows10壁纸切换
 - [ ] 在壁纸上动态添加日历
