@@ -29,7 +29,8 @@ python main.py wallpaper:deepin
 ## TODO
 
 - [ ] 壁纸源增加[unsplash](https://unsplash.com/)和[pexels](https://www.pexels.com/)
+- [ ] 增加壁纸拼接功能，拼接多个不同尺寸的壁纸拼接为一张进行显示
+- [ ] 在壁纸上动态添加日历
 - [ ] 其他linux发行版壁纸切换
 - [ ] MacOS壁纸切换
 - [ ] Windows10壁纸切换
-- [ ] 在壁纸上动态添加日历
