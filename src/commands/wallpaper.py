@@ -53,8 +53,11 @@ class Wallpaper(Command):
         TODO 增加mac自动切换壁纸
         :return:
         """
-
-        print('设置mac地址')
+        address = '/Users/qingliu/study/auto-wallpaper/wallpaper/AerialPantanal_EN-AU7117581218.jpg'
+        cmd = "osascript -e \"tell application \\\"Finder\\\" to set desktop picture to POSIX file \\\"" + address + "\\\"\""
+        print(cmd)
+        os.system(cmd)
+        # 命令未生效，待排查
 
     def windows(self):
         """

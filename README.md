@@ -32,4 +32,9 @@ python main.py wallpaper:deepin
 - [ ] 在壁纸上动态添加日历
 - [ ] 其他linux发行版壁纸切换
 - [ ] MacOS壁纸切换
+
+```bash
+osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"/Users/qingliu/study/auto-wallpaper/wallpaper/AberystwythSeafront_EN-AU9268158003.jpg\""
+```
+
 - [ ] Windows10壁纸切换
