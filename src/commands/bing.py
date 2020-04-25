@@ -63,9 +63,7 @@ class Bing(Command):
                         continue
                     pic_url = self.base_uri + pic_name + '?force=download'
                     res = requests.get(pic_url, headers=self.headers)
-                    print(res.status_code)
                     res.encoding = 'utf8'
-                    print(res.status_code)
                     with open(file_name + '.jpg', 'wb') as f:  # 保存到本地
                         f.write(res.content)
                 except Exception as e:
