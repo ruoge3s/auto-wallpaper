@@ -15,6 +15,7 @@ class Bing(Command):
     home = None
     base_uri = None
     rank_uri = None
+    headers = None
 
     def _init(self):
         self.home = Config().get('wallpaper:home')
@@ -27,6 +28,8 @@ class Bing(Command):
 
         self.rank_uri = Config().get('bing:rank-uri')
         self.base_uri = Config().get('bing:base-uri')
+        # 构建请求头
+        self.headers = Config().section('bing-http-headers')
 
     @mapper.describe('从bing下载壁纸')
     def download(self):
@@ -34,7 +37,13 @@ class Bing(Command):
         self._init()
 
         # 获取总页数
-        response = requests.get(self.rank_uri)
+        response = requests.get(self.rank_uri, headers=self.headers)
+
+        if response.status_code != 200:
+            print('下载壁纸失败,请求壁纸状态码为：' + str(response.status_code))
+            print(response.text)
+            return
+
         pres = re.compile("<span>\d{1,3}\s/\s(\d{1,3})</span>").findall(response.text)
 
         if len(pres) == 1:
@@ -42,24 +51,22 @@ class Bing(Command):
         else:
             total_page = 0
 
-        # 构建请求头
-        headers = Config().section('bing-http-headers')
-
         for page in range(1, total_page + 1):
             print(F"Get pic from page {page}")
             urls = self._pic_urls(page)
             for i, j in enumerate(urls):
                 try:
-                    pic_name = j[:-1] + '_1920x1080.jpg'
+                    pic_name = j[:-1]  # + '_1920x1080.jpg'
                     file_name = self.home + '/' + pic_name
 
-                    if os.path.isfile(file_name):
+                    if os.path.isfile(file_name + '.jpg'):
                         continue
-
-                    res = requests.get(self.base_uri + pic_name, headers=headers)
+                    pic_url = self.base_uri + pic_name + '?force=download'
+                    res = requests.get(pic_url, headers=self.headers)
+                    print(res.status_code)
                     res.encoding = 'utf8'
-                    # print(res.status_code)
-                    with open(file_name, 'wb') as f:  # 保存到本地
+                    print(res.status_code)
+                    with open(file_name + '.jpg', 'wb') as f:  # 保存到本地
                         f.write(res.content)
                 except Exception as e:
                     print(e)
@@ -73,6 +80,7 @@ class Bing(Command):
         :return:
         """
         url = self.rank_uri + '?p=' + str(page)
-        res = requests.get(url)
+        res = requests.get(url, headers=self.headers)
+
         rs = re.compile('<a class="ctrl download" href="/photo/(.*?)/?force=download"')
         return rs.findall(res.text)

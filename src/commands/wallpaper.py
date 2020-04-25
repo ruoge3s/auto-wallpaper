@@ -53,7 +53,8 @@ class Wallpaper(Command):
         TODO 增加mac自动切换壁纸
         :return:
         """
-        pass
+
+        print('设置mac地址')
 
     def windows(self):
         """
