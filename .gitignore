@@ -2,3 +2,5 @@
 venv
 wallpaper
 *.pyc
+
+.DS_Store
